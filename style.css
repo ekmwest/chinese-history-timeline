@@ -1,0 +1,95 @@
+body {
+    font-family: -apple-system, "Segoe UI", Helvetica, sans-serif;
+    margin: 0;
+    padding: 64px;
+}
+
+
+
+/* ==========================================================================
+   Main
+   ========================================================================== */
+
+main {
+    height: 50vh;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+
+/* ==========================================================================
+   Period
+   ========================================================================== */
+
+.period {
+    bottom: 32px;
+    position: absolute;
+    z-index: 1;
+    background-color: #ee1c25;
+    height: 128px;
+    font-weight: bold;
+    padding: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.period-name {
+    background-color: inherit;
+    position: relative;
+    z-index: 2;
+    line-height: 1;
+    padding: 12px 0 16px;
+    font-size: 1.1em;
+    color: #fff;
+}
+
+.period-start-year {
+    position: absolute;
+    bottom: -42px;
+    width: 200px;
+    left: -100px;
+    white-space: nowrap;
+    color: #000;
+    font-size: .8em;
+}
+
+
+
+/* ==========================================================================
+   x-axis
+   ========================================================================== */
+
+.x-axis {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.x-axis-year-label {
+    position: absolute;
+    padding: 4px 0;
+    bottom: -32px;
+    width: 100px;
+    /* background-color: rgba(0, 0, 0, .06); */
+    text-align: center;
+    transform: translate(-50px, 0);
+    border-radius: 4px;
+}
+
+.x-axis-year-gridline {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: -4px;
+    width: 0px;
+    border-right: 1px dashed #ccc;
+}
