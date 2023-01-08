@@ -11,7 +11,7 @@ body {
    ========================================================================== */
 
 main {
-    height: 50vh;
+    height: 70vh;
     box-sizing: border-box;
     position: relative;
 }
@@ -27,10 +27,11 @@ main {
     position: absolute;
     z-index: 1;
     background-color: #ee1c25;
+    background-color: rgba(255, 0, 0, .06);
+    border: 2px solid rgba(255, 0, 0, .4);
     height: 128px;
-    font-weight: bold;
     padding: 0;
-    border-radius: 4px;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,24 +39,52 @@ main {
     box-sizing: border-box;
 }
 
+.period:nth-child(odd) {
+    background-color: rgba(255, 0, 0, .08);
+}
+
+
+
+/* ==========================================================================
+   Period Name
+   ========================================================================== */
+
 .period-name {
     background-color: inherit;
+    background-color: transparent;
     position: relative;
     z-index: 2;
     line-height: 1;
     padding: 12px 0 16px;
-    font-size: 1.1em;
+    font-size: 1em;
     color: #fff;
+    color: #ee1c25;
+    color: #000;
+    font-weight: bold;
 }
 
-.period-start-year {
-    position: absolute;
-    bottom: -42px;
-    width: 200px;
-    left: -100px;
-    white-space: nowrap;
+.period.short .period-name {
+    transform: rotate(-90deg);
+}
+
+
+
+/* ==========================================================================
+   Highlight
+   ========================================================================== */
+
+.hightlight {
+    background-color: inherit;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+    line-height: 1;
+    padding: 12px 0 16px;
+    font-size: 1em;
+    color: #fff;
+    color: #ee1c25;
     color: #000;
-    font-size: .8em;
+    font-weight: bold;
 }
 
 
@@ -71,19 +100,37 @@ main {
     left: 0;
     right: 0;
     height: 1px;
-    background-color: #ccc;
+    background-color: #aaa;
 }
+
+
+
+/* ==========================================================================
+   x-axis label
+   ========================================================================== */
 
 .x-axis-year-label {
     position: absolute;
     padding: 4px 0;
     bottom: -32px;
     width: 100px;
-    /* background-color: rgba(0, 0, 0, .06); */
     text-align: center;
+    font-weight: bold;
     transform: translate(-50px, 0);
     border-radius: 4px;
+    color: #333;
 }
+
+.x-axis-year-label.zero {
+    color: #000;
+    font-size: 1.1em;
+}
+
+
+
+/* ==========================================================================
+   x-axis gridline
+   ========================================================================== */
 
 .x-axis-year-gridline {
     position: absolute;
@@ -91,5 +138,10 @@ main {
     top: 0;
     bottom: -4px;
     width: 0px;
-    border-right: 1px dashed #ccc;
+    border-right: 1px dashed #aaa;
+}
+
+.x-axis-year-gridline.zero {
+    border-color: rgba(0, 0, 0, 1);
+    border-width: 2px;
 }

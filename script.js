@@ -25,15 +25,13 @@ const mainElement = document.querySelector('main');
 
 const timeline = (function () {
     const dataStart = data[0].start;
-    const timelineStart = Math.floor(dataStart / 500) * 500;
+    const timelineStart = Math.floor(dataStart / 100) * 100;
 
     const dataEnd = data[data.length - 1].end;
     const timelineEnd = Math.ceil(dataEnd / 500) * 500;
 
     return { start: timelineStart, end: timelineEnd };
 }());
-
-console.log(timeline);
 
 
 
@@ -55,10 +53,12 @@ console.log(timeline);
 (function () {
     for (const item of data) {
         const left = (item.start - timeline.start) * PIXELS_PER_YEAR + 1 + 'px';
-        const width = (item.end - item.start) * PIXELS_PER_YEAR - 2 + 'px';
+        const timespan = item.end - item.start;
+        const width = timespan * PIXELS_PER_YEAR - 2 + 'px';
+        const length = timespan < 80 ? 'short' : '';
 
         const period = createElementFromHtml(
-            `<div class="period" style="left:${left}; width:${width}">
+            `<div class="period ${length}" style="left:${left}; width:${width}">
                 <span class="period-name">${item.name}</span>
             </div>`
         );
@@ -70,11 +70,33 @@ console.log(timeline);
 
 
 /* ==========================================================================
+   Period Highlights
+   ========================================================================== */
+
+   (function () {
+    for (const item of data) {
+        const left = (item.start - timeline.start) * PIXELS_PER_YEAR + 1 + 'px';
+        const timespan = item.end - item.start;
+        const width = timespan * PIXELS_PER_YEAR - 2 + 'px';
+        const length = timespan < 80 ? 'short' : '';
+
+        const period = createElementFromHtml(
+            `<div class="period ${length}" style="left:${left}; width:${width}">
+                <span class="period-name">${item.name}</span>
+            </div>`
+        );
+
+        // mainElement.append(period);
+    }
+}());
+
+
+/* ==========================================================================
    X-Axis Years Labels
    ========================================================================== */
 
 (function () {
-    let year = timeline.start;
+    let year = Math.ceil(timeline.start / 500) * 500;
 
     while (year <= timeline.end) {
         const left = (year - timeline.start) * PIXELS_PER_YEAR + 'px';
@@ -83,6 +105,9 @@ console.log(timeline);
                 ${toHumanYear(year)}
             </div>`
         );
+        if (year == 0) {
+            yearElement.classList.add('zero');
+        }
         mainElement.append(yearElement);
         year += 500;
     }
@@ -95,13 +120,16 @@ console.log(timeline);
    ========================================================================== */
 
 (function () {
-    let year = timeline.start;
+    let year = Math.ceil(timeline.start / 500) * 500;
 
     while (year <= timeline.end) {
         const left = (year - timeline.start) * PIXELS_PER_YEAR - 1 + 'px';
         const yearElement = createElementFromHtml(
             `<div class="x-axis-year-gridline" style="left:${left};"></div>`
         );
+        if (year == 0) {
+            yearElement.classList.add('zero');
+        }
         mainElement.append(yearElement);
         year += 500;
     }
