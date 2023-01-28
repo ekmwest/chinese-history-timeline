@@ -26,7 +26,6 @@ main {
     bottom: 32px;
     position: absolute;
     z-index: 1;
-    background-color: #ee1c25;
     background-color: rgba(255, 0, 0, .06);
     border: 2px solid rgba(255, 0, 0, .4);
     height: 128px;
@@ -35,12 +34,23 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
     box-sizing: border-box;
 }
 
-.period:nth-child(odd) {
-    background-color: rgba(255, 0, 0, .08);
+
+
+/* ==========================================================================
+   Period Content
+   ========================================================================== */
+
+.period-content {
+    color: #000;
+}
+
+.period.short .period-content {
+    transform: rotate(-90deg);
 }
 
 
@@ -50,21 +60,27 @@ main {
    ========================================================================== */
 
 .period-name {
-    background-color: inherit;
-    background-color: transparent;
-    position: relative;
-    z-index: 2;
-    line-height: 1;
-    padding: 12px 0 16px;
-    font-size: 1em;
-    color: #fff;
-    color: #ee1c25;
-    color: #000;
     font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1;
+    margin-bottom: 4px;
 }
 
 .period.short .period-name {
-    transform: rotate(-90deg);
+    white-space: nowrap;
+    margin-bottom: 0px;
+    font-size: 1em;
+}
+
+
+
+/* ==========================================================================
+   Period Years
+   ========================================================================== */
+
+.period-years {
+    line-height: 1;
+    white-space: nowrap;
 }
 
 
@@ -142,6 +158,6 @@ main {
 }
 
 .x-axis-year-gridline.zero {
-    border-color: rgba(0, 0, 0, 1);
+    border-color: rgba(0, 0, 0, .3);
     border-width: 2px;
 }

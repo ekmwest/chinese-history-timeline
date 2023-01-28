@@ -6,7 +6,7 @@ import { data } from '/data.js';
    Constants
    ========================================================================== */
 
-const PIXELS_PER_YEAR = 1;
+const PIXELS_PER_YEAR = .9;
 const X_AXIS_YEAR_LABEL_WIDTH = 100;
 
 
@@ -59,7 +59,10 @@ const timeline = (function () {
 
         const period = createElementFromHtml(
             `<div class="period ${length}" style="left:${left}; width:${width}">
-                <span class="period-name">${item.name}</span>
+                <div class="period-content">
+                    <div class="period-name">${item.name}</div>
+                    <div class="period-years">${toHumanYear(item.start)} - ${toHumanYear(item.end)}</div>
+                </div>
             </div>`
         );
 
